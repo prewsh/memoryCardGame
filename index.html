@@ -9,20 +9,26 @@
     <title>Document</title>
 </head>
 <body>
-        <h1>MEMORY CARD GAME</h1>     
-        <span class="move"> Moves:</span> <span id="moves" style="padding-left: 2px; padding-right: 20px;">0</span>
-        <span id="refresh">shuffle</span>
-        <div class="spacer"></div>
-        <div style="color: white"> 
-            Time Left :: 
-            <input id="minutes" type="text" style="width: 10px; 
-                 border: none; font-size: 16px;  
-                font-weight: bold; color: black;"> : 
-                             
-            <input id="seconds" type="text" style="width: 20px; 
-                            border: none; font-size: 16px; 
-                            font-weight: bold; color: black;">
-        </div>
+    <div id="head">
+        <div id="text">
+            <h1>CARD GAME</h1> 
+        </div> 
+
+    <div id="operations">  <span class="move"> Moves:</span> <span id="moves" >0</span>
+        <span id="refresh">shuffle</span> 
+    </div>
+
+        <div id="time" style="color: white"> 
+                Time Left :: 
+                <input id="minutes" type="text" style="width: 10px; 
+                     border: none; font-size: 16px;  
+                    font-weight: bold; color: black;"> : 
+                                 
+                <input id="seconds" type="text" style="width: 20px; 
+                                border: none; font-size: 16px; 
+                                font-weight: bold; color: black;">
+            </div>
+    </div>
     <div id="container">
         <div class="card" data-name="fa-hamburger">
             <div class="frontface"> <i class="fas fa-hamburger"></i> </div>

@@ -4,7 +4,7 @@ let firstCard, secondCard;
 let boardlock = false;
 let move = document.getElementById("moves");
 //set minutes 
-var mins = 5; 
+var mins = 3; 
   
 //calculate the seconds 
 var secs = mins * 60;
@@ -15,12 +15,13 @@ const shuffle=()=>{
     })
 }
 
-document.body.onload = shuffle();
+// document.body.onload = shuffle();
 
 
 function flipcard(){
-    countdown();
+    
     if (boardlock) return;
+    if (this === firstCard) return;
     this.classList.add('flip');
 
     if (!flipedCard){
@@ -63,7 +64,8 @@ function unflipCard(){
         firstCard.classList.remove('flip');
         secondCard.classList.remove('flip');
 
-    boardlock = false;
+    // boardlock = false;
+    resetBoard();
 
     }, 1000);
 }
@@ -109,9 +111,13 @@ function Decrement() {
         //if seconds becomes zero, 
         //then page alert time up 
         if (mins < 0) { 
-            alert('time up'); 
+            alert('Time up!, refresh window to start game again.');
+            unflipAll();
+            checkwin();
+            boardlock = true;
             minutes.value = 0; 
-            seconds.value = 0; 
+            seconds.value = 0;
+            location.reload(); 
         } 
         //if seconds > 0 then seconds is decremented 
         else { 
@@ -132,3 +138,24 @@ function getseconds() {
     //from total seconds remaining 
     return secs - Math.round(mins * 60); 
 } 
+
+function unflipAll(){
+    Array.from(cards).forEach(function(box) {
+        box.classList.remove('flip')
+    })
+}
+
+function resetBoard(){
+    [flipedCard, boardlock] = [false, false];
+    [firstCard, secondCard] = [null, null];
+}
+
+function checkwin(){
+    const winArray =  Array.from(cards).filter(function(box) {
+      return box.classList[1] == 'flip'
+  })
+  console.log(winArray)
+  }
+
+countdown();
+shuffle();
