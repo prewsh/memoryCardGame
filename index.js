@@ -4,7 +4,7 @@ let firstCard, secondCard;
 let boardlock = false;
 let move = document.getElementById("moves");
 //set minutes 
-var mins = 3; 
+var mins = 1; 
   
 //calculate the seconds 
 var secs = mins * 60;
@@ -34,6 +34,15 @@ function flipcard(){
         secondCard=this;     
         
         checkIfMatch();
+    }
+
+    if(checkwin() === true){
+      const isPlay =  confirm(`Congratulations. You won! \n You made ${move.textContent} moves \n Do yoou want to play again?`)
+     if(isPlay){
+         location.reload()
+     }else{
+         window.close()
+     }
     }
 }
 
@@ -111,9 +120,13 @@ function Decrement() {
         //if seconds becomes zero, 
         //then page alert time up 
         if (mins < 0) { 
-            alert('Time up!, refresh window to start game again.');
+            
+            if(checkwin() === true){
+                alert('win')
+            }else{
+                alert('lost')
+            };
             unflipAll();
-            checkwin();
             boardlock = true;
             minutes.value = 0; 
             seconds.value = 0;
@@ -154,7 +167,12 @@ function checkwin(){
     const winArray =  Array.from(cards).filter(function(box) {
       return box.classList[1] == 'flip'
   })
-  console.log(winArray)
+  if(winArray.length === 16){
+      
+      return true;
+  }else{
+      return false;
+  }
   }
 
 countdown();
